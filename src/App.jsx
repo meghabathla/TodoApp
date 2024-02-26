@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { TodoProvider } from "./contexts/TodoContext";
+import TodoForm from "./components/TodoForm";
+import TodoItem from "./components/TodoItem";
 import "./App.css";
 
 function App() {
@@ -8,7 +10,7 @@ function App() {
   const addTodo = (todo) => {
     setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev]);
   };
-  const updateTodo = (id, todo) => {
+  const updateTodos = (id, todo) => {
     setTodos((prev) =>
       prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
     );
@@ -38,7 +40,7 @@ function App() {
 
   return (
     <TodoProvider
-      value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}
+      value={{ todos, addTodo, updateTodos, deleteTodo, toggleComplete }}
     >
       <div className="bg-[#172842] min-h-screen py-8">
         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
@@ -53,7 +55,7 @@ function App() {
             {/*Loop and Add TodoItem here */}
             {todos.map((todo) => (
               <div key={todo.id} className="w-full">
-                <TodoItem todo={todo} />
+                <TodoItem todoObj={todo} />
               </div>
             ))}
           </div>
