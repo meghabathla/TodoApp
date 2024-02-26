@@ -9,7 +9,7 @@ function TodoForm() {
     e.preventDefault();
     if (!todoTitleMsg) return;
 
-    addTodo({ todo: todoTitleMsg, completed: false });
+    addTodo({ id: Date.now(), todo: todoTitleMsg, completed: false });
     setTodoTitleMsg("");
   };
 
